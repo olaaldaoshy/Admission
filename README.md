@@ -1,11 +1,22 @@
-<div align="center">
+# NIS Admissions - Firebase Management System
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+هذا النظام مرتبط بشكل كامل بـ Firebase لإدارة عمليات القبول والموظفين.
 
-  <h1>Built with AI Studio</h2>
+## تفاصيل مشروع Firebase (Firebase Project Details)
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- **Project ID:** `crmproject-4c6df`
+- **Database:** Firestore (NoSQL)
+- **Authentication:** Email/Password & Anonymous
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## كيفية العثور على إعدادات الربط في الكود
 
-</div>
+يمكنك العثور على "مفتاح الربط" (Firebase Configuration) في المسار التالي:
+`src/firebase/config.ts`
+
+## الخدمات المفعلة حالياً:
+1. **Firestore Database**: لتخزين بيانات الطلاب، الموظفين، والإعدادات.
+2. **Firebase Authentication**: لتأمين دخول الموظفين (Login/Register).
+3. **App Hosting**: لاستضافة الموقع وتشغيله.
+
+---
+تم تطوير هذا النظام وتوصيله بقاعدة البيانات بواسطة Firebase Studio.

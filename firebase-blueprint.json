@@ -1,0 +1,193 @@
+
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "type": "object",
+      "description": "Represents a student applicant within the Admission Management System.",
+      "properties": {
+        "id": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "studentName": { "type": "string" },
+        "dateOfBirth": { "type": "string", "format": "date" },
+        "age": { "type": "number" },
+        "gender": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "nationality": { "type": "string" },
+        "religion": { "type": "string" },
+        "address": { "type": "string" },
+        "fatherName": { "type": "string" },
+        "fatherPhone": { "type": "string" },
+        "fatherEmail": { "type": "string" },
+        "motherName": { "type": "string" },
+        "motherPhone": { "type": "string" },
+        "motherEmail": { "type": "string" },
+        "currentSchoolName": { "type": "string" },
+        "currentGrade": { "type": "string" },
+        "notes": { "type": "string" },
+        "category": { "type": "string" },
+        "previousCampus": { "type": "string" },
+        "admissionFeeMethod": { "type": "string", "enum": ["Campus", "Bank"] },
+        "admissionFeeAmount": { "type": "string" },
+        "isDeferredToOrientation": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "studentName", "createdAt", "updatedAt"]
+    },
+    "Employee": {
+      "title": "Employee",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string" },
+        "status": { "type": "string", "enum": ["Active", "Inactive", "Invited"] },
+        "isActive": { "type": "boolean" },
+        "campus": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Application": {
+      "title": "Application",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "school": { "type": "string" },
+        "grade": { "type": "string" },
+        "category": { "type": "string" },
+        "previousCampus": { "type": "string" },
+        "status": { "type": "string" },
+        "applicationDate": { "type": "string", "format": "date" },
+        "assignedEmployeeId": { "type": "string" },
+        "assignedEmployeeName": { "type": "string" },
+        "interviewScore": { "type": "string" },
+        "oralScore": { "type": "string" },
+        "assessmentScore": { "type": "string" },
+        "totalScore": { "type": "string" },
+        "paymentStatus": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Lead": {
+      "title": "Campaign Lead",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "source": { "type": "string" },
+        "status": { "type": "string", "enum": ["New", "Followed up", "Interested", "Not Interested", "Converted"] },
+        "assignedToId": { "type": "string" },
+        "assignedToName": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "OrgSetting": {
+      "title": "OrgSetting",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "value": { "type": "string" },
+        "type": { "type": "string" },
+        "day": { "type": "string" }
+      }
+    },
+    "Campus": {
+      "title": "Campus",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "address": { "type": "string" }
+      }
+    },
+    "School": {
+      "title": "School",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "Grade": {
+      "title": "Grade",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "CampusMapping": {
+      "title": "CampusMapping",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "schools": { "type": "object" }
+      }
+    },
+    "Counter": {
+      "title": "Counter",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "lastId": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["password", "anonymous", "google.com"]
+  },
+  "firestore": {
+    "/counters/{counterId}": {
+      "schema": { "$ref": "#/backend/entities/Counter" },
+      "description": "Sequential counters for document IDs"
+    },
+    "/students/{studentId}": {
+      "schema": { "$ref": "#/backend/entities/Student" },
+      "description": "Student profiles"
+    },
+    "/employees/{employeeId}": {
+      "schema": { "$ref": "#/backend/entities/Employee" },
+      "description": "Staff profiles"
+    },
+    "/applications/{applicationId}": {
+      "schema": { "$ref": "#/backend/entities/Application" },
+      "description": "Admission applications"
+    },
+    "/leads/{leadId}": {
+      "schema": { "$ref": "#/backend/entities/Lead" },
+      "description": "Campaign leads for Sales team"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/backend/entities/OrgSetting" },
+      "description": "Global organization settings"
+    },
+    "/campus/{campusId}": {
+      "schema": { "$ref": "#/backend/entities/Campus" },
+      "description": "School campus locations"
+    },
+    "/schools/{schoolId}": {
+      "schema": { "$ref": "#/backend/entities/School" },
+      "description": "Educational systems"
+    },
+    "/grade/{gradeId}": {
+      "schema": { "$ref": "#/backend/entities/Grade" },
+      "description": "Grade levels"
+    },
+    "/campus_mappings/{mappingId}": {
+      "schema": { "$ref": "#/backend/entities/CampusMapping" },
+      "description": "Campus grade and school mapping"
+    }
+  }
+}
